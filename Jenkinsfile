@@ -22,26 +22,9 @@ fi'''
       }
     }
 
-    stage('conditional') {
-      parallel {
-        stage('sleep20') {
-          steps {
-            sleep 20
-          }
-        }
-
-        stage('msg') {
-          steps {
-            echo 'aguarde 20'
-          }
-        }
-
-      }
-    }
-
-    stage('CONDITION') {
+    stage('msg') {
       steps {
-        fileExists 'teste.sh'
+        echo 'aguarde 20'
       }
     }
 
