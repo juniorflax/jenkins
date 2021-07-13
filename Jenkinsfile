@@ -36,12 +36,6 @@ fi'''
           }
         }
 
-        stage('cond') {
-          steps {
-            waitUntil(initialRecurrencePeriod: 1)
-          }
-        }
-
       }
     }
 
