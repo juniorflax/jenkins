@@ -42,16 +42,7 @@ fi'''
       parallel {
         stage('msg') {
           steps {
-            echo 'aguarde 20'
-            sh '''result=`ps -ef | grep naoexiste | grep -v grep`
-if [ -z "$result" ];
-then
-       echo "NOK"
-       exit
-else
-       echo "OK"
-       exit 0
-fi'''
+            echo 'erro calculado'
           }
         }
 
