@@ -57,6 +57,7 @@ else
        echo "OK"
        exit 0
 fi'''
+            waitUntil(initialRecurrencePeriod: 1, quiet: true)
           }
         }
 
