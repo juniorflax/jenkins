@@ -1,10 +1,26 @@
 pipeline {
   agent any
   stages {
-    stage('checkName') {
-      steps {
-        sh 'whoami'
-        sh 'hostname'
+    stage('checkDados') {
+      parallel {
+        stage('checkWhoami') {
+          steps {
+            sh 'whoami'
+          }
+        }
+
+        stage('checkHostname') {
+          steps {
+            sh 'hostname'
+          }
+        }
+
+        stage('checkIP') {
+          steps {
+            sh 'ifconfig'
+          }
+        }
+
       }
     }
 
@@ -23,8 +39,42 @@ fi'''
     }
 
     stage('msg') {
+      parallel {
+        stage('msg') {
+          steps {
+            echo 'aguarde 20'
+            sh '''result=`ps -ef | grep naoexiste | grep -v grep`
+if [ -z "$result" ];
+then
+       echo "NOK"
+       exit
+else
+       echo "OK"
+       exit 0
+fi'''
+          }
+        }
+
+        stage('CheckFake') {
+          steps {
+            sh '''result=`ps -ef | grep naoexiste | grep -v grep`
+if [ -z "$result" ];
+then
+       echo "NOK"
+       exit
+else
+       echo "OK"
+       exit 0
+fi'''
+          }
+        }
+
+      }
+    }
+
+    stage('CheckFile') {
       steps {
-        echo 'aguarde 20'
+        validateDeclarativePipeline '/root/jenkinsteste.txt'
       }
     }
 
